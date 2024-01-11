@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ブラックジャックゲーム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #game-area {
+            margin: auto;
+            width: 300px;
+        }
+        .hand {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        .card {
+            margin: 5px;
+            display: inline-block;
+        }
+        #player-hand, #dealer-hand {
+            min-height: 100px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-area">
+        <h2>ブラックジャック</h2>
+
+        <div id="dealer-hand" class="hand">
+            <h3>ディーラーの手札</h3>
+            <!-- ディーラーのカードがここに表示される -->
+        </div>
+
+        <div id="player-hand" class="hand">
+            <h3>あなたの手札</h3>
+            <!-- プレイヤーのカードがここに表示される -->
+        </div>
+
+        <button onclick="playerHit()">ヒット</button>
+        <button onclick="playerStand()">スタンド</button>
+        <button onclick="startNewGame()">新しいゲーム</button>
+
+        <p id="game-result"></p>
+    </div>
+
+    <script src="blackjack.js"></script>
+</body>
+</html>
