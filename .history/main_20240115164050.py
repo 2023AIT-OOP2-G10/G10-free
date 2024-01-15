@@ -60,10 +60,18 @@ def start():
     return render_template('start.html')
 
 
+# @app.route('/blackjack', methods=['GET', 'POST'])
+# def blackjack():
+    trumps_data = trumps()
+    return render_template('blackjack_test.html',
+                           selected_numbers=trumps_data[0],
+                           selected_images=trumps_data[1])
+
+
 @app.route('/blackjack', methods=['GET', 'POST'])
 def blackjack():
     trumps_data = trumps()
-    return render_template('blackjack_test.html',
+    return render_template('/Users/k22061kk/GitHub/G10_トランプ/G10-free/shintaro-tasukete/templates/blackjack.html',
                            selected_numbers=trumps_data[0],
                            selected_images=trumps_data[1])
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ブラックジャック</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #game-area {
+            margin: auto;
+            width: 300px;
+        }
+        .hand {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        .card {
+            margin: 5px;
+            display: inline-block;
+        }
+        #player-hand, #dealer-hand {
+            min-height: 100px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-area">
+        <button id="start-game">新しいゲームを始める</button>
+        <button id="hit">ヒット</button>
+        <button id="stand">スタンド</button>
+        <div id="player-hand" class="hand"></div>
+        <div id="dealer-hand" class="hand"></div>
+        <div id="game-result"></div>
+    </div>
+<script src="{{ url_for('static', filename='blackjack.js') }}"></script>
+</body>
+</html>
+
+
