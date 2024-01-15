@@ -6,9 +6,9 @@ def calculate_hand_value(hand):
     ace_count = 0
 
     for card in hand:
-        if card['Value'] in ['Jack', 'Queen', 'King']:
+        if card['Value'] in ['11', '12', '13']:
             total += 10
-        elif card['Value'] == 'Ace':
+        elif card['Value'] == '1':
             ace_count += 1
             total += 11
         else:
