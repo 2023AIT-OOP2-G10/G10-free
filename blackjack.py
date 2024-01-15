@@ -70,6 +70,17 @@ def player_stand():
         game_state['winner'] = 'push'
 
     game_state['game_over'] = True
+
     return jsonify(game_state)
+
+# リセット 追加
+@blackjack_bp.route('/blackjack/reset', methods=['POST'])
+def reset_game():
+    game_state['player_hand'] = []
+    game_state['dealer_hand'] = []
+    game_state['game_over'] = False
+    game_state['winner'] = None
+    return jsonify(game_state)
+
 
 
