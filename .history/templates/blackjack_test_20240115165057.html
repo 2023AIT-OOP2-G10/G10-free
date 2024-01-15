@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <style>
+        body {
+            background-color: #2c3e50;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #cardContainer {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;  /* 画面幅が足りない場合は次の行に折り返す */
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;  /* カードの幅 */
+            height: 150px;  /* カードの高さ */
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            margin: 0 5px 10px 5px;  /* カードのマージン */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blackjack Game</h1>
+    
+    <div id="cardContainer">
+        {% for image in selected_images %}
+            <div class="card">
+                <img src="{{ url_for('static', filename=image) }}" alt="Card">
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -2,7 +2,7 @@ from flask import Flask, render_template, session
 import random
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+
 trump_numbers = list(range(52))
 
 clovers_images = ["Clover_13.png", "Clover_1.png", "Clover_2.png", "Clover_3.png",
@@ -60,17 +60,20 @@ def start():
     return render_template('start.html')
 
 
-@app.route('/blackjack', methods=['GET', 'POST'])
-def blackjack():
+@app.route('/blackjack_play', methods=['GET', 'POST'])
+def blackjack_play():
     trumps_data = trumps()
-    return render_template('blackjack_test.html',
+    return render_template('blackjack.html',
                            selected_numbers=trumps_data[0],
                            selected_images=trumps_data[1])
 
 
-@app.route('/result')
-def result():
-    return render_template('result.html')
+@app.route('/blackjack', methods=['GET', 'POST'])
+def blackjack():
+    trumps_data = trumps()
+    return render_template('blackjack.html',
+                           selected_numbers=trumps_data[0],
+                           selected_images=trumps_data[1])
 
 
 if __name__ == '__main__':

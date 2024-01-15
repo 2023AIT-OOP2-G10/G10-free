@@ -68,10 +68,5 @@ def blackjack():
                            selected_images=trumps_data[1])
 
 
-@app.route('/result')
-def result():
-    return render_template('result.html')
-
-
 if __name__ == '__main__':
     app.run(debug=True)
