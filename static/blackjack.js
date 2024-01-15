@@ -34,5 +34,5 @@
         }
 
         function cardToString(card) {
-            return `${card.Value} of ${card.Suit}`;
+            return `${card.Suit}_${card.Value}`;
         }
