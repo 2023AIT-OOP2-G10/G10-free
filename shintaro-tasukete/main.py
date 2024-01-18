@@ -86,18 +86,20 @@ def blackjack_play():
     global selected_numbers, selected_pngs
     trumps_data = trumps(selected_numbers, selected_pngs)
     trumps_data2 = trumps(trumps_data[0], trumps_data[1])
+    trumps_data3 = trumps(trumps_data2[0], trumps_data2[1])
     return render_template('blackjack.html',
-                           selected_numbers=trumps_data2[0],
-                           selected_pngs=trumps_data2[1])
+                           selected_numbers=trumps_data3[0],
+                           selected_pngs=trumps_data3[1])
 
 @app.route('/blackjack', methods=['GET', 'POST'])
 def blackjack():
     global selected_numbers, selected_pngs
     trumps_data = trumps(selected_numbers, selected_pngs)
     trumps_data2 = trumps(trumps_data[0], trumps_data[1])
+    trumps_data3 = trumps(trumps_data2[0], trumps_data2[1])
     return render_template('blackjack.html',
-                           selected_numbers=trumps_data2[0],
-                           selected_pngs=trumps_data2[1])
+                           selected_numbers=trumps_data3[0],
+                           selected_pngs=trumps_data3[1])
 
 if __name__ == '__main__':
     app.run(debug=True)
