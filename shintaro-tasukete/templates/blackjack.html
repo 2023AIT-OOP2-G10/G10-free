@@ -85,14 +85,14 @@
             <h2>ディーラー</h2>
             <h3>プレイヤー</h3>
             <section>
-                {% if selected_numbers|length == 2 %}
+                {% if selected_numbers|length == 3 %}
                 <figure>
                     <img src="{{ url_for('static', filename=selected_pngs[1]) }}" alt="trump1" width="100">
                 </figure>
                 <figure>
                     <img src="{{ url_for('static', filename=selected_pngs[2]) }}" alt="trump2" width="100">
                 </figure>
-                {% elif selected_numbers|length == 3 %}
+                {% elif selected_numbers|length == 4 %}
                 <figure>
                     <img src="{{ url_for('static', filename=selected_pngs[1]) }}" alt="trump1" width="100">
                 </figure>
@@ -102,7 +102,7 @@
                 <figure>
                     <img src="{{ url_for('static', filename=selected_pngs[3]) }}" alt="trump3" width="100">
                 </figure>
-                {% elif selected_numbers|length == 4 %}
+                {% elif selected_numbers|length == 5 %}
                 <figure>
                     <img src="{{ url_for('static', filename=selected_pngs[1]) }}" alt="trump1" width="100">
                 </figure>
@@ -115,7 +115,7 @@
                 <figure>
                     <img src="{{ url_for('static', filename=selected_pngs[4]) }}" alt="trump4" width="100">
                 </figure>
-                {% elif selected_numbers|length == 5 %}
+                {% elif selected_numbers|length == 6 %}
                 <figure>
                     <img src="{{ url_for('static', filename=selected_pngs[1]) }}" alt="trump1" width="100">
                 </figure>
