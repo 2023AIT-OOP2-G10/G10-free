@@ -55,7 +55,7 @@ def trumps(selected_numbers, selected_pngs):
         elif len(selected_numbers) > 0:
             if selected not in selected_numbers:
                 selected_numbers.append(selected)
-                # 13で割った後の値(0〜4)と余りでトランプを判別する
+                #13で割った後の値(0〜4)と余りでトランプを判別する
                 # Clovers 0-12  Diamonds 13-25 hearts 26-38 spades 39-51
                 # 割った余りがゼロの時13とする ex 14=Diamond 1 ,13=Diamond 13
                 suit = selected // 13
