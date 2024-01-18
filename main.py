@@ -83,12 +83,6 @@ def start():
 
 @app.route('/blackjack_play', methods=['GET', 'POST'])
 def blackjack_play():
-<<<<<<< Updated upstream
-    trumps_data = trumps()
-    return render_template('blackjack_test.html',
-                           selected_numbers=trumps_data[0],
-                           selected_images=trumps_data[1])
-=======
     global selected_numbers, selected_pngs
     trumps_data = trumps(selected_numbers, selected_pngs)
     trumps_data2 = trumps(trumps_data[0], trumps_data[1])
@@ -96,17 +90,10 @@ def blackjack_play():
     return render_template('blackjack.html',
                            selected_numbers=trumps_data3[0],
                            selected_pngs=trumps_data3[1])
->>>>>>> Stashed changes
 
 
 @app.route('/blackjack', methods=['GET', 'POST'])
 def blackjack():
-<<<<<<< Updated upstream
-    trumps_data = trumps()
-    return render_template('blackjack.html',
-                           selected_numbers=trumps_data[0],
-                           selected_images=trumps_data[1])
-=======
     global selected_numbers, selected_pngs
     trumps_data = trumps(selected_numbers, selected_pngs)
     trumps_data2 = trumps(trumps_data[0], trumps_data[1])
@@ -114,7 +101,6 @@ def blackjack():
     return render_template('blackjack.html',
                            selected_numbers=trumps_data3[0],
                            selected_pngs=trumps_data3[1])
->>>>>>> Stashed changes
 
 
 if __name__ == '__main__':
