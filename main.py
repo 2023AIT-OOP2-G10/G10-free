@@ -1,5 +1,7 @@
 from flask import Flask, render_template, session
 import random
+from blackjack import blackjack_bp
+
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -72,6 +74,8 @@ def blackjack():
 def result():
     return render_template('result.html')
 
+
+app.register_blueprint(blackjack_bp)
 
 if __name__ == '__main__':
     app.run(debug=True)
