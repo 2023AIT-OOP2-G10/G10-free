@@ -6,9 +6,14 @@ document.getElementById('reset-game').addEventListener('click', resetGame);  // 
 function playerAction(action) {
     fetch(`/blackjack/${action}`, { method: 'POST' })
         .then(response => response.json())
-        .then(data => updateGameView(data))
+        .then(data => {
+            updateGameView(data);
+            updateCardImages(data);
+        })
         .catch(error => console.error('Error:', error));
 }
+
+
 
 function updateGameView(data) {
     if (data.error) {
@@ -20,8 +25,8 @@ function updateGameView(data) {
     const dealerHandDiv = document.getElementById('dealer-hand');
     const gameResultDiv = document.getElementById('game-result');
 
-    playerHandDiv.innerHTML = 'プレイヤーの手札: ' + data.player_hand.map(cardToString).join(', ');
-    dealerHandDiv.innerHTML = 'ディーラーの手札: ' + data.dealer_hand.map(cardToString).join(', ');
+    playerHandDiv.innerHTML = data.player_hand.map(cardToString).join(', ');
+    dealerHandDiv.innerHTML = data.dealer_hand.map(cardToString).join(', ');
 
     if (data.game_over) {
         let resultMessage = 'ゲーム終了！ ';
@@ -55,5 +60,5 @@ function resetGame() {
 }
 
 function cardToString(card) {
-    return `${card.Suit}_${card.Value}`;
+    return `<img src="/static/${card.Suit}_${card.Value}.png" alt="${card.Suit} ${card.Value}" width="100">`;
 }
