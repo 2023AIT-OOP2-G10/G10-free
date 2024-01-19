@@ -2,6 +2,16 @@ document.getElementById('start-game').addEventListener('click', () => playerActi
 document.getElementById('hit').addEventListener('click', () => playerAction('hit'));
 document.getElementById('stand').addEventListener('click', () => playerAction('stand'));
 document.getElementById('reset-game').addEventListener('click', resetGame);  // スタート画面に戻るをイベントリスナーを追加
+document.addEventListener('DOMContentLoaded', function() {
+    // ゲームを保存するボタンのイベントリスナー
+    document.getElementById('save-game').addEventListener('click', function() {
+        saveGame();
+    });
+    // ゲームを読み込むボタンのイベントリスナー
+    document.getElementById('load-game').addEventListener('click', function() {
+        loadGame();
+    });
+ });
 
 function playerAction(action) {
     fetch(`/blackjack/${action}`, { method: 'POST' })
@@ -57,6 +67,34 @@ function resetGame() {
 
     // 追加: ゲームがリセットされたらスタート画面に戻る
     window.location.href = '/';
+}
+
+function saveGame() {
+    const gameData = {/* ゲーム状態のデータ */};
+    // 例: { player_hand: [...], dealer_hand: [...], ... }
+    fetch('/save_game', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(gameData),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data.message))
+    .catch(error => console.error('Error:', error));
+}
+
+
+function loadGame() {
+    fetch('/load_game')
+        .then(response => response.json())
+        .then(data => {
+            // ゲーム状態を更新するための関数
+            updateGameView(data);
+            updateGameState(data);
+            updateCardImages(data);
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 function cardToString(card) {

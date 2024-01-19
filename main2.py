@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import random  # ランダムデータ作成のためのライブラリ
 import datetime
+import json
 from blackjack import blackjack_bp
 
 app = Flask(__name__)

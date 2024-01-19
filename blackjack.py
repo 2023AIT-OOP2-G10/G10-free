@@ -1,8 +1,9 @@
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, request, render_template
 from card_utils import create_deck
 from draw_cards import draw_cards
 from calculate_hand_value import calculate_hand_value
-import random
+import random  # ランダムデータ作成のためのライブラリ
+import json
 
 
 blackjack_bp = Blueprint('blackjack', __name__)
@@ -28,6 +29,8 @@ def start_game():
     game_state['dealer_hand'] = draw_cards(game_state['deck'], 2)
     game_state['game_over'] = False
     game_state['winner'] = None
+    with open('game_state.json', 'w') as file:
+        json.dump(game_state, file)
     return jsonify(game_state)
 
 
@@ -81,6 +84,25 @@ def reset_game():
     game_state['game_over'] = False
     game_state['winner'] = None
     return jsonify(game_state)
+
+@blackjack_bp.route('/save_game', methods=['POST'])
+def save_game():
+
+    if not game_state:
+        return jsonify({"error": "No data provided"}), 400
+
+    with open('game_state.json', 'w') as file:
+        json.dump(game_state, file)
+    return jsonify({"message": "Game saved successfully"})
+
+@blackjack_bp.route('/load_game', methods=['GET'])
+def load_game():
+    try:
+        with open('game_state.json', 'r') as file:
+            game_state = json.load(file)
+        return jsonify(game_state)
+    except FileNotFoundError:
+        return jsonify({"error": "No saved game found"}), 404
 
 
 
