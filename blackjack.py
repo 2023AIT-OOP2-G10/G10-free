@@ -22,7 +22,7 @@ game_state = {
 @blackjack_bp.route('/blackjack', methods=["GET"])
 def start():
     game_state['name'] = request.args.get('name',"名無しプレイヤー")
-    return render_template('blackjack_test.html')
+    return render_template('blackjack_test.html',name=game_state['name'])
 
 # start
 @blackjack_bp.route('/blackjack/start', methods=['GET', 'POST'])
