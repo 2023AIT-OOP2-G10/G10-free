@@ -64,57 +64,7 @@
 
 <body>
     <div id="game-area">
-
         <h3 class="cor">ディーラー</h3>
-        <section>
-                {% if selected_numbers|length == 3 %}
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[1]) }}" alt="trump1" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[2]) }}" alt="trump2" width="100">
-                </figure>
-                {% elif selected_numbers|length == 4 %}
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[1]) }}" alt="trump1" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[2]) }}" alt="trump2" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[3]) }}" alt="trump3" width="100">
-                </figure>
-                {% elif selected_numbers|length == 5 %}
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[1]) }}" alt="trump1" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[2]) }}" alt="trump2" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[3]) }}" alt="trump3" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[4]) }}" alt="trump4" width="100">
-                </figure>
-                {% elif selected_numbers|length == 6 %}
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[1]) }}" alt="trump1" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[2]) }}" alt="trump2" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[3]) }}" alt="trump3" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[4]) }}" alt="trump4" width="100">
-                </figure>
-                <figure>
-                    <img src="{{ url_for('static', filename=selected_pngs[5]) }}" alt="trump5" width="100">
-                </figure>
-                {% endif %}
-            </section>
         <div id="dealer-hand" class="hand"></div>
         <div id="player-hand" class="hand"></div>
         <h3 class="cor">プレイヤー</h3>
