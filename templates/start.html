@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,7 @@
     <title>Blackjack Game</title>
     <style>
         body {
-            background-image: url('/static/start.jpg'); 
+            background-image: url('/static/start.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -20,7 +21,8 @@
             text-align: center;
         }
 
-        h1, p {
+        h1,
+        p {
             margin-bottom: 20px;
         }
 
@@ -35,11 +37,12 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Welcome to the Blackjack Game!</h1>
     <form action="/blackjack" method="get" onsubmit="return setDefaultValue()">
         <label for="player-name">Enter Your Name:</label>
-        <input type="text" id="player-name" placeholder="Enter your name" name="name">      
+        <input required type="text" id="player-name" placeholder="Enter your name" name="name" value="名無しさん">
         <button type="submit">START</button>
         <script>
             function setDefaultValue() {
@@ -53,5 +56,5 @@
         </script>
     </form>
 </body>
-</html>
 
+</html>
