@@ -1,6 +1,4 @@
 from flask import Flask, request, render_template
-import random  # ランダムデータ作成のためのライブラリ
-import datetime
 from blackjack import blackjack_bp
 
 app = Flask(__name__)
