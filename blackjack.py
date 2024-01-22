@@ -1,10 +1,12 @@
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint,Flask, request,jsonify,render_template
 from card_utils import create_deck
 from draw_cards import draw_cards
 from calculate_hand_value import calculate_hand_value
+from calculate_score import calculate_score
+from store_json import store_json
 import random
 
-
+app = Flask(__name__)
 blackjack_bp = Blueprint('blackjack', __name__)
 
 game_state = {
@@ -12,12 +14,15 @@ game_state = {
     'player_hand': [],
     'dealer_hand': [],
     'game_over': False,
-    'winner': None
+    'winner': None,
+    'name': "名無しプレイヤー",
+    'score':0,
 }
 
-@blackjack_bp.route('/blackjack')
+@blackjack_bp.route('/blackjack', methods=["GET"])
 def start():
-    return render_template('blackjack_test.html')
+    game_state['name'] = request.args.get('name',"名無しプレイヤー")
+    return render_template('blackjack_test.html',name=game_state['name'])
 
 # start
 @blackjack_bp.route('/blackjack/start', methods=['GET', 'POST'])
@@ -43,6 +48,8 @@ def player_hit():
     if player_total > 21:  # バーストチェック
         game_state['game_over'] = True
         game_state['winner'] = 'dealer'
+        store_json(game_state['name'],game_state['score'])
+
         return jsonify(game_state)
 
     return jsonify(game_state)
@@ -64,23 +71,25 @@ def player_stand():
 
     if dealer_total > 21 or player_total > dealer_total:
         game_state['winner'] = 'player'
+        game_state['score']=calculate_score(game_state['player_hand'],game_state['score'])
     elif dealer_total > player_total:
         game_state['winner'] = 'dealer'
     else:
         game_state['winner'] = 'push'
 
     game_state['game_over'] = True
+    store_json(game_state['name'],game_state['score'])
 
     return jsonify(game_state)
 
 # リセット 追加
 @blackjack_bp.route('/blackjack/reset', methods=['POST'])
 def reset_game():
+    game_state['deck'] = []
     game_state['player_hand'] = []
     game_state['dealer_hand'] = []
     game_state['game_over'] = False
     game_state['winner'] = None
+    game_state['name'] = "名無しプレイヤー"
+    game_state['score'] = 0
     return jsonify(game_state)
-
-
-
