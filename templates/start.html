@@ -17,44 +17,72 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: black;
             text-align: center;
         }
+        h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            margin-top: 5px; 
+            -webkit-text-stroke: 1px white;
+        }
 
-        h1,
         p {
             margin-bottom: 20px;
         }
-
         form {
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        button {
+            margin-top: 20px; 
+            font-size: 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 10px;
+            cursor: pointer;
         }
 
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
+        .button-separator {
+            margin-top: 350px;
+        }
+        .button-separator2 {
+            margin-top: 50px;
         }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to the Blackjack Game!</h1>
+    <h1>Welcome to the Blackjack Game</h1>
+
+    <div class="button-separator"></div>
+
+    <form action="/sorted_scores" method="get" onsubmit="return setDefaultValue()">
+        <button type="submit">Score</button>
+    </form>
+
+    <div class="button-separator2"></div>
+
     <form action="/blackjack" method="get" onsubmit="return setDefaultValue()">
         <label for="player-name">Enter Your Name:</label>
         <input required type="text" id="player-name" placeholder="Enter your name" name="name" value="名無しさん">
         <button type="submit">START</button>
-        <script>
-            function setDefaultValue() {
-                // HTMLで入力された名前を取得
-                var name = document.getElementById('player-name').value;
-                // 入力がない場合はデフォルトで「名無しプレイヤー」を設定
-                if (!name.trim()) document.getElementById('player-name').value = '名無しプレイヤー';
-                // フォームがサブミットされるようにする
-                return true;
-            }
-        </script>
     </form>
+    
+    <script>
+        function setDefaultValue() {
+            var name = document.getElementById('player-name').value;
+            if (!name.trim()) document.getElementById('player-name').value = '名無しプレイヤー';
+            return true;
+        }
+    </script>
 </body>
 
 </html>
