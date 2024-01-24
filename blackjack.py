@@ -93,3 +93,10 @@ def reset_game():
     game_state['name'] = "名無しプレイヤー"
     game_state['score'] = 0
     return jsonify(game_state)
+
+@blackjack_bp.route('/blackjack/result', methods=['POST'])
+def submit_game_result():
+    data = game_state
+    # データ処理（スコア計算）
+    # 既存のテンプレートを使用してHTMLをレンダリング
+    return render_template('result.html')

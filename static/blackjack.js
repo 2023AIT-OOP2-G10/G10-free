@@ -2,6 +2,7 @@ document.getElementById('start-game').addEventListener('click', () => playerActi
 document.getElementById('hit').addEventListener('click', () => playerAction('hit'));
 document.getElementById('stand').addEventListener('click', () => playerAction('stand'));
 document.getElementById('reset-game').addEventListener('click', resetGame);  // スタート画面に戻るをイベントリスナーを追加
+document.getElementById('restartButton').addEventListener('click', restartGame);
 
 function playerAction(action) {
     fetch(`/blackjack/${action}`, { method: 'POST' })
@@ -39,6 +40,9 @@ function updateGameView(data) {
         const resetButton = document.getElementById('reset-game');
         resetButton.style.display = 'block';
 
+        // result追加
+        submitGameResult(data);
+
     } else {
         gameResultDiv.innerHTML = '';
     }
@@ -59,6 +63,37 @@ function resetGame() {
     window.location.href = '/';
 }
 
+function restartGame() {
+    console.log('restart button clicked!');  // デバッグメッセージ
+    fetch('/blackjack/reset', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            updateGameView(data);
+            // 追加: リセットボタンを非表示にする
+            document.getElementById('reset-game').style.display = 'none';
+        })
+        .catch(error => console.error('Error:', error));
+
+    // 追加: ゲームがリセットされたらゲーム画面に戻る
+    window.location.href = '/blackjack';
+}
+
 function cardToString(card) {
     return `<img src="/static/${card.Suit}_${card.Value}.png" alt="${card.Suit} ${card.Value}" width="100">`;
+}
+
+// result画面呼び出し
+function submitGameResult(gameData) {
+    fetch('/blackjack/result', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(gameData)
+    })
+    .then(response => response.text())
+    .then(html => {
+        document.body.innerHTML = html;
+    })
+    .catch(error => console.error('Error:', error));
 }
