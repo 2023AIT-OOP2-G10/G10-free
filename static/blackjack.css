@@ -43,9 +43,9 @@
     cursor: pointer;
     text-decoration: none;
     /* 文字の下線を消す */
-    position: relative;
-    top: -563px;
-    right: -300px;
+
+
+
 }
 
 #reset-game:active {
