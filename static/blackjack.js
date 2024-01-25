@@ -15,7 +15,6 @@ function playerAction(action) {
         .then(response => response.json())
         .then(data => {
             updateGameView(data);
-            updateCardImages(data);
         })
         .catch(error => console.error('Error:', error));
 }
@@ -107,17 +106,12 @@ function cardToString(card) {
 }
 
 // result画面呼び出し
-function submitGameResult(gameData) {
-    fetch('/blackjack/result', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(gameData)
-    })
-        .then(response => response.text())
-        .then(html => {
-            document.body.innerHTML = html;
-        })
-        .catch(error => console.error('Error:', error));
-}
+
+function submitGameResult() {
+    window.location.href = '/blackjack/result'
+    }
+
+
+
+
+

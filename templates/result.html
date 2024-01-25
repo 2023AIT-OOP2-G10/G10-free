@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blackjack Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='blackjack.css') }}">
+
     <style>
         body {
             background-image: url('/static/result.jpg');  /* 背景画像のパスを修正 */
@@ -14,7 +16,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            color: rgb(37, 10, 10);
+            color: rgb(245, 242, 242);
         }
 
         #resultContainer {
@@ -33,10 +35,26 @@
             justify-content: center;
         }
 
+        .hand {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            display: flex;
+            /* Flexboxレイアウトを有効化 */
+            justify-content: center;
+            /* 中央揃え */
+            align-items: center;
+            /* アイテムを垂直方向に中央揃え */
+            gap: 10px;
+            /* カード間の隙間 */
+        }
+
         button {
-            margin: 0 10px;
+            margin: 10px;
             padding: 10px 20px;
             font-size: 16px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
         h3 {
@@ -49,40 +67,123 @@
 <body>
 
     <div id="resultContainer">
-        <h1>ブラックジャックの結果</h1>
-        <p id="resultMessage">winner:{{winner}}</p>
+
+        <div id="game-result"></div>
     </div>
 
-    <div id="npcHand">
-        <h2>ディーラー</h2>
-        <!-- ここにNPCのトランプを表示 -->
-        <!-- 例: <img src="path/to/npc-card.png" alt="NPCのカード"> -->
-    </div>
 
-    <div id="playerHand">
-        <h2>{{name}}</h2>
-        <!-- ここにプレイヤーのトランプを表示 -->
-        <!-- 例: <img src="path/to/player-card.png" alt="プレイヤーのカード"> -->
-    </div>
-    <h3>your score = {{score}}</h3>
+
+    <h3 class="cor">ディーラー</h3>
+    <div id="dealer-hand" class="hand"></div>
+    <div id="player-hand" class="hand"></div>
+    <h3 class="cor">{{name}}</h3>
+
+
+
+
+
+
+
 
     <div id="buttonsContainer">
-        <button id="restartButton" onclick="restartGame()">もう一度</button>
+
         <button id="reset-game" onclick="resetGame()">終了</button>
     </div>
 
+
+
+
+
     <script>
+
+        document.getElementById('reset-game').addEventListener('click', resetGame);  // スタート画面に戻るをイベントリスナーを追加
+
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+          
+
+            fetch('/blackjack/resultstate', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => updateGameResult(data))
+                .catch(error => console.error('Error:', error));  // エラー処理を追加
+        });
+
+        function updateGameResult(data) {
+
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+
+
+
+
+            const playerHandDiv = document.getElementById('player-hand');
+            const dealerHandDiv = document.getElementById('dealer-hand');
+            const gameResultDiv = document.getElementById('game-result');
+
+            playerHandDiv.innerHTML = data.player_hand.map(cardToString).join(', ');
+            dealerHandDiv.innerHTML = data.dealer_hand.map(cardToString).join(', ');
+
+            if (data.game_over) {
+                let resultMessage = 'ゲーム終了！ ';
+                resultMessage += data.winner === 'player' ? 'プレイヤーの勝利！' :
+                    data.winner === 'dealer' ? 'ディーラーの勝利！' :
+                        '引き分け！';
+                gameResultDiv.innerHTML = resultMessage;
+
+            } else {
+                gameResultDiv.innerHTML = '';
+            }
+
+
+
+        }
+
+        function cardToString(card) {
+            return `<img src="/static/${card.Suit}_${card.Value}.png" alt="${card.Suit} ${card.Value}" width="100">`;
+        }
+
+        function resetGame() {
+            console.log('Reset button clicked!');  // デバッグメッセージ
+            fetch('/blackjack/reset', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    updateGameView(data);
+                    // 追加: リセットボタンを非表示にする
+                    document.getElementById('reset-game').style.display = 'none';
+                })
+                .catch(error => console.error('Error:', error));
+
+            // 追加: ゲームがリセットされたらスタート画面に戻る
+            window.location.href = '/';
+        }
+
         function restartGame() {
-            // ゲーム再スタートの処理を追加
-            alert('もう一度挑戦してみましょう');
-            window.location.href = 'http://127.0.0.1:5001/blackjack?name='+name;
+            console.log('restart button clicked!');  // デバッグメッセージ
+            fetch('/blackjack/reset', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    updateGameView(data);
+                    // 追加: リセットボタンを非表示にする
+                    document.getElementById('reset-game').style.display = 'none';
+             })
+                .catch(error => console.error('Error:', error));
+
+            // 追加: ゲームがリセットされたらゲーム画面に戻る
+            window.location.href = '/blackjack';
         }
-    
-        function quitGame() {
-            // ゲーム終了の処理を追加
-            alert('またのプレイをお待ちしております');
-            window.location.href = 'http://127.0.0.1:5001'; // Redirect to the specified URL
-        }
+
+
+
+
+
+
+
+
+
     </script>
     
 </body>
