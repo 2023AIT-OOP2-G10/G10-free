@@ -101,3 +101,31 @@
     position: relative;
     top: -50px;
 }
+
+/* 既存のスタイル */
+
+.card {
+    margin: 5px;
+    display: inline-block;
+}
+
+#player-hand .card,
+#dealer-hand .card {
+    min-width: 0;
+    /* カードが左端からスライドインするために必要なスタイル */
+    transform: translateX(100%);
+    /* カードを初期状態では右端に配置 */
+    transition: transform 0.5s ease-in-out;
+    /* アニメーションの設定 */
+}
+
+/* マウスがカードにホバーされたときのアニメーション */
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* 新しいスタイル: スライドインのアニメーション */
+.slide-in-card {
+    transform: translateX(0) !important;
+    /* !important で優先度を上げて設定 */
+}
