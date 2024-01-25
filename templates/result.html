@@ -39,6 +39,11 @@
             font-size: 16px;
             cursor: pointer;
         }
+        h3 {
+            color: rgb(56, 35, 172);
+            font-size: 40px;  
+            -webkit-text-stroke: 1px white;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +64,7 @@
         <!-- ここにプレイヤーのトランプを表示 -->
         <!-- 例: <img src="path/to/player-card.png" alt="プレイヤーのカード"> -->
     </div>
+    <h3>your score = {{score}}</h3>
 
     <div id="buttonsContainer">
         <button id="restartButton" onclick="restartGame()">もう一度</button>
@@ -69,7 +75,7 @@
         function restartGame() {
             // ゲーム再スタートの処理を追加
             alert('もう一度挑戦してみましょう');
-            window.location.href = 'http://127.0.0.1:5001/blackjack?name=名無しさん';
+            window.location.href = 'http://127.0.0.1:5001/blackjack?name='+name;
         }
     
         function quitGame() {

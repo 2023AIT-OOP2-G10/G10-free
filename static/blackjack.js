@@ -2,7 +2,7 @@ document.getElementById('start-game').addEventListener('click', () => playerActi
 document.getElementById('hit').addEventListener('click', () => playerAction('hit'));
 document.getElementById('stand').addEventListener('click', () => playerAction('stand'));
 document.getElementById('reset-game').addEventListener('click', resetGame);  // スタート画面に戻るをイベントリスナーを追加
-document.getElementById('restartButton').addEventListener('click', restartGame);
+document.getElementById('restartButton').addEventListener('click', restartGame); 
 
 function playerAction(action) {
     fetch(`/blackjack/${action}`, { method: 'POST' })
