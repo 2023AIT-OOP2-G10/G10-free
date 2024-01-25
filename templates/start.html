@@ -20,30 +20,33 @@
             color: black;
             text-align: center;
         }
+
         h1 {
             font-size: 60px;
             margin-bottom: 20px;
-            margin-top: 5px; 
+            margin-top: 5px;
             -webkit-text-stroke: 1px white;
         }
 
         p {
             margin-bottom: 20px;
         }
+
         form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
+
         button {
-            margin-top: 20px; 
-            font-size: 25px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 15px 32px;
-            text-align: center;
+            margin-top: 20px;
+            font-size: 15px;
+            display: inline-block;
+            padding: 0.8em 3em;
+            background-color: #eeee06;
+            border-radius: 40px;
+            color: black;
+            cursor: pointer;
             text-decoration: none;
             display: inline-block;
             border-radius: 10px;
@@ -53,6 +56,7 @@
         .button-separator {
             margin-top: 350px;
         }
+
         .button-separator2 {
             margin-top: 50px;
         }
@@ -75,7 +79,7 @@
         <input type="text" id="player-name" placeholder="Enter your name" name="name">
         <button type="submit">START</button>
     </form>
-    
+
     <script>
         function setDefaultValue() {
             var name = document.getElementById('player-name').value;

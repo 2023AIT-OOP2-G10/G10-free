@@ -263,6 +263,11 @@
         "name": "名無しさん",
         "score": 0
     },
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
     {
         "name": "名無しさん",
         "score": 52
@@ -434,5 +439,14 @@
     {
         "name": "名無しさん",
         "score": 180
+<<<<<<< Updated upstream
     }
+=======
+    },
+    {
+        "name": "名無しプレイヤー",
+        "score": 0
+    }
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 ]

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blackjack Result</title>
     <style>
         body {
-            background-image: url('/static/result.jpg');  /* 背景画像のパスを修正 */
+            background-image: url('/static/result.jpg');
+            /* 背景画像のパスを修正 */
             background-size: cover;
             margin: 0;
             display: flex;
@@ -22,7 +24,8 @@
             margin-bottom: 20px;
         }
 
-        #playerHand, #npcHand {
+        #playerHand,
+        #npcHand {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
@@ -39,8 +42,15 @@
             font-size: 16px;
             cursor: pointer;
         }
+
+        h3 {
+            color: rgb(56, 35, 172);
+            font-size: 40px;
+            -webkit-text-stroke: 1px white;
+        }
     </style>
 </head>
+
 <body>
 
     <div id="resultContainer">
@@ -69,15 +79,16 @@
         function restartGame() {
             // ゲーム再スタートの処理を追加
             alert('もう一度挑戦してみましょう');
-            window.location.href = 'http://127.0.0.1:5001/blackjack?name=名無しさん';
+            window.location.href = 'http://127.0.0.1:5001/blackjack?name=' + name;
         }
-    
+
         function quitGame() {
             // ゲーム終了の処理を追加
             alert('またのプレイをお待ちしております');
             window.location.href = 'http://127.0.0.1:5001'; // Redirect to the specified URL
         }
     </script>
-    
+
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +16,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white; 
+            color: white;
             text-align: center;
         }
+
         h1 {
             font-size: 60px;
             margin-bottom: 20px;
@@ -30,16 +32,17 @@
             border-collapse: collapse;
             width: 80%;
             max-width: 600px;
-            color: white; 
+            color: white;
         }
 
-        th, td {
-            border: 1px solid white; 
+        th,
+        td {
+            border: 1px solid white;
             padding: 10px;
         }
 
         th {
-            background-color: #333; 
+            background-color: #333;
         }
 
         button {
@@ -48,6 +51,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Best Score Ranking</h1>
     <table>
@@ -60,11 +64,11 @@
         </thead>
         <tbody>
             {% for player in data %}
-                <tr>
-                    <th>{{ loop.index }}</th>
-                    <th>{{ player.name }}</th>
-                    <th>{{ player.score }}</th>
-                </tr>
+            <tr>
+                <th>{{ loop.index }}</th>
+                <th>{{ player.name }}</th>
+                <th>{{ player.score }}</th>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -72,4 +76,5 @@
         <button type="submit">戻る</button>
     </form>
 </body>
+
 </html>

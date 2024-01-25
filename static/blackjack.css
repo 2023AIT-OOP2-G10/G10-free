@@ -5,7 +5,14 @@
     border-radius: 15px;
     border: 3px solid #B2B2B2;
     position: relative;
+    top: 100px;
     left: -100px;
+}
+
+#dealer-hand,
+#player-hand {
+    position: relative;
+    top: 100px;
 }
 
 #start-game {
@@ -21,8 +28,8 @@
     text-decoration: none;
     /* 文字の下線を消す */
     position: relative;
-    top: -500px;
-    right: -550px;
+    top: -450px;
+    right: -400px;
 }
 
 /* クリック時 */
@@ -31,18 +38,18 @@
     transform: translateY(5px);
 }
 
-#reset-game {
+/* #reset-game {
     display: inline-block;
     padding: 0.8em 3em;
     background-color: #e3364a;
-    /* 背景色 */
+    /* 背景色 
     box-shadow: 0 5px 0 #a10f20;
-    /* 影の太さ・色 */
+    /* 影の太さ・色 
     border-radius: 60px;
     color: black;
     cursor: pointer;
     text-decoration: none;
-    /* 文字の下線を消す */
+    /* 文字の下線を消す 
     position: relative;
     top: -563px;
     right: -300px;
@@ -51,7 +58,7 @@
 #reset-game:active {
     box-shadow: none;
     transform: translateY(5px);
-}
+} */
 
 #hit {
     display: inline-block;
@@ -66,7 +73,7 @@
     text-decoration: none;
     /* 文字の下線を消す */
     position: relative;
-    top: -50px;
+    top: 50px;
     right: 100px;
 }
 
@@ -88,7 +95,7 @@
     text-decoration: none;
     /* 文字の下線を消す */
     position: relative;
-    top: -113px;
+    top: -13px;
     right: -100px;
 }
 
