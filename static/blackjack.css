@@ -1,0 +1,103 @@
+.cor {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 150px;
+    height: 28px;
+    border-radius: 15px;
+    border: 3px solid #B2B2B2;
+    position: relative;
+    left: -100px;
+}
+
+#start-game {
+    display: inline-block;
+    padding: 0.8em 3em;
+    background-color: #e3364a;
+    /* 背景色 */
+    box-shadow: 0 5px 0 #a10f20;
+    /* 影の太さ・色 */
+    border-radius: 60px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    /* 文字の下線を消す */
+    position: relative;
+    top: -500px;
+    right: -550px;
+}
+
+/* クリック時 */
+#start-game:active {
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+#reset-game {
+    display: inline-block;
+    padding: 0.8em 3em;
+    background-color: #e3364a;
+    /* 背景色 */
+    box-shadow: 0 5px 0 #a10f20;
+    /* 影の太さ・色 */
+    border-radius: 60px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    /* 文字の下線を消す */
+    position: relative;
+    top: -563px;
+    right: -300px;
+}
+
+#reset-game:active {
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+#hit {
+    display: inline-block;
+    padding: 0.8em 3em;
+    background-color: #eeee06;
+    /* 背景色 */
+    box-shadow: 0 5px 0 #717e08;
+    /* 影の太さ・色 */
+    border-radius: 60px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    /* 文字の下線を消す */
+    position: relative;
+    top: -50px;
+    right: 100px;
+}
+
+#hit:active {
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+#stand {
+    display: inline-block;
+    padding: 0.8em 3em;
+    background-color: #eeee06;
+    /* 背景色 */
+    box-shadow: 0 5px 0 #717e08;
+    /* 影の太さ・色 */
+    border-radius: 60px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    /* 文字の下線を消す */
+    position: relative;
+    top: -113px;
+    right: -100px;
+}
+
+#stand:active {
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+#game-result {
+    position: relative;
+    top: -50px;
+}

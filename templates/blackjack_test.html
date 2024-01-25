@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ブラックジャック</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='blackjack.css') }}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,10 +31,14 @@
             margin: 10px;
             padding: 10px;
             border: none;
-            display: flex; /* Flexboxレイアウトを有効化 */
-            justify-content: center; /* 中央揃え */
-            align-items: center; /* アイテムを垂直方向に中央揃え */
-            gap: 10px; /* カード間の隙間 */
+            display: flex;
+            /* Flexboxレイアウトを有効化 */
+            justify-content: center;
+            /* 中央揃え */
+            align-items: center;
+            /* アイテムを垂直方向に中央揃え */
+            gap: 10px;
+            /* カード間の隙間 */
         }
 
 
@@ -57,7 +62,7 @@
         }
 
         .cor {
-          color: #f0f0f0
+            color: #f0f0f0
         }
     </style>
 </head>
@@ -69,7 +74,7 @@
         <div id="player-hand" class="hand"></div>
         <h3 class="cor">{{name}}</h3>
         <button id="start-game">新しいゲームを始める</button>
-        <button id="reset-game" style="display: none;" onclick="resetGame()">スタート画面に戻る</button> 
+        <button id="reset-game" style="display: none;" onclick="resetGame()">スタート画面に戻る</button>
         <button id="hit" href="" class="btn btn--red btn--border-outset">ヒット</button>
         <audio id="audio" src="{{ url_for('static', filename='draw.mp3') }}"></audio>
         <button id="stand">スタンド</button>
@@ -80,9 +85,9 @@
     </div>
     <script src="{{ url_for('static', filename='blackjack.js') }}"></script>
     <script>
-        document.getElementById('hit').addEventListener('click', function() {
+        document.getElementById('hit').addEventListener('click', function () {
             var audio = document.getElementById('audio');
-            audio.play().catch(function(error) {
+            audio.play().catch(function (error) {
                 console.error('Error playing audio:', error);
             });
         });
