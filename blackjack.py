@@ -108,3 +108,4 @@ def submit_game_result():
 def submit_game_resultstate():
     data = game_state
     return jsonify(data)
+

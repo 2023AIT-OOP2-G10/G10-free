@@ -57,6 +57,11 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        h3 {
+            color: rgb(56, 35, 172);
+            font-size: 40px;  
+            -webkit-text-stroke: 1px white;
+        }
     </style>
 </head>
 <body>
@@ -79,6 +84,7 @@
 
 
 
+
     <div id="buttonsContainer">
 
         <button id="reset-game" onclick="resetGame()">終了</button>
@@ -89,6 +95,7 @@
 
 
     <script>
+
         document.getElementById('reset-game').addEventListener('click', resetGame);  // スタート画面に戻るをイベントリスナーを追加
 
 
@@ -130,6 +137,8 @@
             } else {
                 gameResultDiv.innerHTML = '';
             }
+
+
 
         }
 

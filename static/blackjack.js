@@ -1,7 +1,13 @@
 document.getElementById('start-game').addEventListener('click', () => playerAction('start'));
-document.getElementById('hit').addEventListener('click', () => playerAction('hit'));
-document.getElementById('stand').addEventListener('click', () => playerAction('stand'));
-document.getElementById('reset-game').addEventListener('click', resetGame);  // スタート画面に戻るをイベントリスナーを追加
+document.getElementById('hit').addEventListener('click', () => {
+    playerAction('hit');
+    slideInCard('player-hand');
+});
+document.getElementById('stand').addEventListener('click', () => {
+    playerAction('stand');
+    slideInCard('dealer-hand');
+});
+document.getElementById('reset-game').addEventListener('click', resetGame);
 document.getElementById('restartButton').addEventListener('click', restartGame);
 
 function playerAction(action) {
@@ -13,7 +19,22 @@ function playerAction(action) {
         .catch(error => console.error('Error:', error));
 }
 
+function slideInCard(elementId) {
+    const cardContainer = document.getElementById(elementId);
+    const cards = cardContainer.getElementsByClassName('card');
 
+    // カードが右端からスライドインするアニメーションを適用
+    for (let card of cards) {
+        card.classList.add('slide-in-card');
+    }
+
+    // アニメーションが終了したらクラスを削除
+    cards[0].addEventListener('animationend', function () {
+        for (let card of cards) {
+            card.classList.remove('slide-in-card');
+        }
+    });
+}
 
 function updateGameView(data) {
     if (data.error) {
@@ -25,8 +46,9 @@ function updateGameView(data) {
     const dealerHandDiv = document.getElementById('dealer-hand');
     const gameResultDiv = document.getElementById('game-result');
 
-    playerHandDiv.innerHTML = data.player_hand.map(cardToString).join(', ');
-    dealerHandDiv.innerHTML = data.dealer_hand.map(cardToString).join(', ');
+    playerHandDiv.innerHTML = data.player_hand.map(cardToString).join('');
+    dealerHandDiv.innerHTML = data.dealer_hand.map(cardToString).join('');
+
 
     if (data.game_over) {
         let resultMessage = 'ゲーム終了！ ';
@@ -35,17 +57,19 @@ function updateGameView(data) {
                 '引き分け！';
         gameResultDiv.innerHTML = resultMessage;
 
-        // 追加: ゲームが終了した場合にリセットボタンを表示
+        // ゲームが終了した場合にリセットボタンを表示
         const resetButton = document.getElementById('reset-game');
         resetButton.style.display = 'block';
 
         // result追加
         submitGameResult(data);
-
     } else {
         gameResultDiv.innerHTML = '';
     }
 }
+
+// 既存の関数、リセットとリスタートの処理はそのままです
+
 // 追加
 function resetGame() {
     console.log('Reset button clicked!');  // デバッグメッセージ
@@ -82,9 +106,11 @@ function cardToString(card) {
 }
 
 // result画面呼び出し
+
 function submitGameResult() {
     window.location.href = '/blackjack/result'
     }
+
 
 
 
