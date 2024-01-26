@@ -17,11 +17,12 @@
             justify-content: center;
             height: 100vh;
             color: rgb(245, 242, 242);
+            text-align: center;
         }
 
         #resultContainer {
             text-align: center;
-            margin-bottom: 20px;
+            margin-top: 30px; /* 要素間の上部の余白を調整 */
         }
 
         #playerHand, #npcHand {
@@ -60,50 +61,36 @@
 
         #game-result {
             font-size: 30px;
+            margin-bottom: 10px; /* 隙間を小さくするために追加 */
+        }
+        h4{
+            font-size: 60px;
+            color: rgb(237, 218, 10);
+            margin-top: 10px; /* 隙間を小さくするために追加 */
+            margin-bottom: 0; /* h4 要素の下部の余白を削除 */
+            -webkit-text-stroke: 1px rgb(12, 210, 200);
         }
        
     </style>
 </head>
 <body>
-
     <div id="resultContainer">
-
         <div id="game-result"></div>
+        <h4>Score:{{score}}</h4>
     </div>
-
-
 
     <h3 class="cor">ディーラー</h3>
     <div id="dealer-hand" class="hand"></div>
     <div id="player-hand" class="hand"></div>
     <h3 class="cor">{{name}}</h3>
 
-
-
-
-
-
-
-
     <div id="buttonsContainer">
-
         <button id="reset-game" onclick="resetGame()">終了</button>
     </div>
 
-
-
-
-
     <script>
-
-        document.getElementById('reset-game').addEventListener('click', resetGame);  // スタート画面に戻るをイベントリスナーを追加
-
-
-
-
+        document.getElementById('reset-game').addEventListener('click',resetGame);  // スタート画面に戻るをイベントリスナーを追加
         document.addEventListener('DOMContentLoaded', () => {
-          
-
             fetch('/blackjack/resultstate', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => updateGameResult(data))
@@ -111,35 +98,25 @@
         });
 
         function updateGameResult(data) {
-
             if (data.error) {
                 alert(data.error);
                 return;
             }
 
-
-
-
             const playerHandDiv = document.getElementById('player-hand');
             const dealerHandDiv = document.getElementById('dealer-hand');
             const gameResultDiv = document.getElementById('game-result');
-
             playerHandDiv.innerHTML = data.player_hand.map(cardToString).join(', ');
             dealerHandDiv.innerHTML = data.dealer_hand.map(cardToString).join(', ');
-
             if (data.game_over) {
                 let resultMessage = 'ゲーム終了！ ';
                 resultMessage += data.winner === 'player' ? 'プレイヤーの勝利！' :
                     data.winner === 'dealer' ? 'ディーラーの勝利！' :
                         '引き分け！';
                 gameResultDiv.innerHTML = resultMessage;
-
             } else {
                 gameResultDiv.innerHTML = '';
             }
-
-
-
         }
 
         function cardToString(card) {
@@ -175,14 +152,6 @@
             // 追加: ゲームがリセットされたらゲーム画面に戻る
             window.location.href = '/blackjack';
         }
-
-
-
-
-
-
-
-
 
     </script>
     

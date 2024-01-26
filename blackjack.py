@@ -100,8 +100,7 @@ def reset_game():
 
 @blackjack_bp.route('/blackjack/result', methods=['GET'])
 def submit_game_result():
-    data = game_state
-    return render_template('result.html', name=game_state['name'], winner=game_state['winner'])
+    return render_template('result.html', name=game_state['name'], winner=game_state['winner'],score=game_state['score'])
 
 
 @blackjack_bp.route('/blackjack/resultstate', methods=['POST'])
