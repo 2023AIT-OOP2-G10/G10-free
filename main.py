@@ -21,6 +21,16 @@ def score():
     return render_template('score.html', data=sorted_data[:10])
 
 
+@app.route('/sorted_scores/latest')
+def latest():
+    with open('store.json', 'r') as file:
+        data = json.load(file)
+
+    # 直近10個のスコアを取得
+    reversed_data = list(reversed(data))
+    return render_template('score_latest.html', data=reversed_data[:10])
+
+
 app.register_blueprint(blackjack_bp)
 
 # blackjack.pyに記述

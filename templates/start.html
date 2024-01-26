@@ -62,11 +62,14 @@
     <h1>Welcome to the Blackjack Game</h1>
 
     <div class="button-separator"></div>
-
-    <form action="/sorted_scores" method="get" onsubmit="return setDefaultValue()">
-        <button type="submit">Score</button>
-    </form>
-
+    <div>
+        <form action="/sorted_scores" method="get" onsubmit="return setDefaultValue()">
+            <button type="submit">Score Ranking</button>
+        </form>
+        <form action="/sorted_scores/latest" method="get" onsubmit="return setDefaultValue()">
+            <button type="submit">Latest Score</button>
+        </form>
+    </div>
     <div class="button-separator2"></div>
 
     <form action="/blackjack" method="get" onsubmit="return setDefaultValue()">
